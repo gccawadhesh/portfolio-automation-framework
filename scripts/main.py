@@ -4,11 +4,7 @@ from pdf_utils import compile_pdf_variant
 from ai_utils import generate_linkedin_post
 from linkedin_utils import publish_post
 
-from config import (
-    FULLSTACK_RESUME,
-    BACKEND_RESUME
-)
-
+from config import RESUME_PDF
 from utils import log
 
 
@@ -29,14 +25,8 @@ def main():
 
         compile_pdf_variant(
             updated_md,
-            FULLSTACK_RESUME,
-            "fullstack"
-        )
-
-        compile_pdf_variant(
-            updated_md,
-            BACKEND_RESUME,
-            "backend"
+            RESUME_PDF,
+            "default"
         )
 
     post = generate_linkedin_post(stats)
