@@ -1,69 +1,127 @@
-# Harshit Singh
-**Software Development Engineer**  
-Varanasi, Uttar Pradesh, India | +91 7393064211 | rarchit101@gmail.com  
-[LinkedIn](https://www.linkedin.com/in/harshit-singh-21jan2004) | [GitHub](https://github.com/zukliod)
+# Awadhesh Kumar
+**Software Development Engineer | AI & ML Enthusiast**  
+Kanpur, Uttar Pradesh, India | +91 6388923839 | awadheshkumar210424@gmail.com  
+[LinkedIn](https://www.linkedin.com/in/awadhesh-kumar-366963291) | [GitHub](https://github.com/gccawadhesh)
 
 ---
 
-### OBJECTIVE
-Aspiring Software Development Engineer with strong foundations in Data Structures, Algorithms, Full-Stack Web Development (MERN), and Artificial Intelligence. Proficient in Python, JavaScript, Java, React.js, Node.js, and MongoDB, with hands-on experience in building scalable, data-driven applications.
+## OBJECTIVE
+
+Final-year B.Tech Computer Science Engineering (AI & ML) student with strong foundations in Software Development, Data Structures & Algorithms, Artificial Intelligence, and Full-Stack Web Development. Passionate about building scalable applications using Java, Python, JavaScript, React, Node.js, and modern AI technologies. Seeking a Software Development Engineer role where I can solve real-world problems and contribute to impactful products.
 
 ---
 
-### EDUCATION
-**Maharana Pratap Engineering College (MPEC)** | Kanpur, India  
-*Bachelor of Technology (B.Tech) - Computer Science and Engineering (AI)*  
-`Sep 2023 – Sep 2027`
+## EDUCATION
 
-**St. John's School, BLW** | Varanasi, India  
-*Senior Secondary (ICSE) with Computer Science*  
-`2016 – 2022`
+**Maharana Institute of Professional Studies (MIPS), Kanpur**  
+*Bachelor of Technology (B.Tech) – Computer Science & Engineering (AI & ML)*  
+**2023 – 2027**
 
 ---
 
-### TECHNICAL SKILLS
-* **Web Technologies & Stack:** MERN Stack (MongoDB, Express.js, React.js, Node.js), HTML5, CSS3, JavaScript, REST APIs, Tailwind CSS
-* **Programming Languages:** Python, Java, C, C++
-* **Core CS & Concepts:** Data Structures & Algorithms, Problem Solving, Computer Networks, Complexity Analysis
-* **AI, ML & Analytics:** Pandas, NumPy, Matplotlib, Machine Learning Fundamentals, Data Analytics
-* **Databases & Tools:** MySQL, MongoDB, Git, Jupyter Notebook, VS Code, UiPath (RPA)
+## TECHNICAL SKILLS
+
+### Programming Languages
+- Java
+- Python
+- JavaScript
+- C++
+- SQL
+
+### Web Development
+- HTML5
+- CSS3
+- JavaScript
+- React.js
+- Node.js
+- Express.js
+
+### Databases
+- MongoDB
+- MySQL
+
+### Core Computer Science
+- Data Structures & Algorithms
+- Object-Oriented Programming
+- Operating Systems
+- DBMS
+- Computer Networks
+
+### AI & Machine Learning
+- Machine Learning Fundamentals
+- NumPy
+- Pandas
+- Matplotlib
+
+### Tools & Platforms
+- Git
+- GitHub
+- VS Code
+- Postman
+- Linux
 
 ---
 
-### EXPERIENCE
-**Acmegrade** | Kanpur, India  
-*Learning Intern - Artificial Intelligence*  
-`Aug 2024 – Oct 2024`
+## EXPERIENCE
 
-* Learned during 12+ structured sessions on Artificial Intelligence concepts including supervised learning, model evaluation, and data preprocessing.
-* Developed Python-based data analysis pipelines using Pandas and Matplotlib to process datasets exceeding 5,000 records.
-* Implemented machine learning models (regression and classification), improving prediction accuracy by up to 15% during experimentation.
-* Collaborated within a team of 4 to design and deliver AI-focused academic content and technical documentation under strict deadlines.
+### Software Development & AI Projects
+Developed multiple full-stack and AI-based applications demonstrating practical knowledge of backend development, REST APIs, automation, and machine learning.
 
 ---
 
-### FEATURED PROJECTS
+## FEATURED PROJECTS
+
 <!-- START_GITHUB_PROJECTS -->
-**Resumeforge Ai**  
-*[Source Code (TypeScript)](https://github.com/gccawadhesh/ResumeForge-AI)*
-* Full-stack software engineering application.
 
-**Fdias Project**  
-*[Source Code (Python)](https://github.com/gccawadhesh/FDIAS-Project)*
-* A real-time face detection intrusion alert system using YOLOv8 and DeepFace, with alerts sent via Telegram
+### ResumeForge AI
+**Source Code:** https://github.com/gccawadhesh/ResumeForge-AI
 
-**Sanskriti Setu Backend**  
-*[Source Code (Python)](https://github.com/gccawadhesh/sanskriti-setu-backend)*
-* Django backend for Sanskriti Setu cultural heritage app
+- AI-powered resume builder and optimization platform.
+- Generates ATS-friendly resumes.
+- Supports resume parsing, editing, and PDF generation.
+
+### FDIAS Project
+**Source Code:** https://github.com/gccawadhesh/FDIAS-Project
+
+- Face Detection Intrusion Alert System.
+- Built using YOLOv8 and DeepFace.
+- Sends real-time Telegram alerts for unauthorized access.
+
+### Sanskriti Setu Backend
+**Source Code:** https://github.com/gccawadhesh/sanskriti-setu-backend
+
+- Django REST backend for the Sanskriti Setu application.
+- Designed scalable APIs and backend architecture.
 
 <!-- END_GITHUB_PROJECTS -->
 
 ---
 
-### CERTIFICATIONS & ACHIEVEMENTS
-* **Global Rank 158** in HPE CodeWars among 5,000+ participants.
-* **Finalist** in CodeKalesh 2025 (Team Turma Codicum).
-* **Artificial Intelligence Internship Certificate** — Acmegrade.
-* **IBM Data Visualization with Python** — IBM / Coursera.
-* **Problem Solving (Intermediate)** — HackerRank.
-* **Python Essentials 1** — Cisco Networking Academy.
+## ACHIEVEMENTS
+
+- Solved Data Structures & Algorithms problems on LeetCode.
+- Built multiple AI, automation, and full-stack development projects.
+- Strong interest in Software Engineering and Backend Development.
+
+---
+
+## CERTIFICATIONS
+
+- Artificial Intelligence
+- Machine Learning
+- Python Programming
+- Full Stack Web Development
+- Git & GitHub
+- SQL & Database Management
+
+---
+
+## LINKS
+
+**GitHub:** https://github.com/gccawadhesh
+
+**LinkedIn:** https://www.linkedin.com/in/awadhesh-kumar-366963291
+
+**Email:** awadheshkumar210424@gmail.com
+
+**Phone:** +91 6388923839
