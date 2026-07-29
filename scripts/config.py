@@ -1,54 +1,99 @@
 import os
+from pathlib import Path
 
-# ======================================================
-# API Keys & Environment Variables
-# ======================================================
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+# ============================================================
+# PROJECT PATHS
+# ============================================================
 
-LINKEDIN_ACCESS_TOKEN = os.getenv("LINKEDIN_ACCESS_TOKEN")
+# config.py is inside /scripts
+# parent.parent gives the repository root directory
+ROOT_DIR = Path(__file__).resolve().parent.parent
 
-LINKEDIN_AUTHOR_URN = os.getenv("LINKEDIN_AUTHOR_URN")
 
-LEETCODE_USERNAME = os.getenv(
-    "LEETCODE_USERNAME",
-    "your_leetcode_username"   # Replace with your LeetCode username
+# ============================================================
+# API / ENVIRONMENT VARIABLES
+# ============================================================
+
+GEMINI_API_KEY = os.getenv(
+    "GEMINI_API_KEY"
 )
 
-# ======================================================
-# Personal Information
-# ======================================================
+LINKEDIN_ACCESS_TOKEN = os.getenv(
+    "LINKEDIN_ACCESS_TOKEN"
+)
+
+LINKEDIN_AUTHOR_URN = os.getenv(
+    "LINKEDIN_AUTHOR_URN"
+)
+
+
+# ============================================================
+# PERSONAL INFORMATION
+# ============================================================
 
 NAME = "Awadhesh Kumar"
 
-ROLE = "Final Year B.Tech CSE (AI & ML) Student"
-
-COLLEGE = "Maharana Institute of Professional Studies, Kanpur"
-
 EMAIL = "awadheshkumar210424@gmail.com"
 
-PHONE = "+91 6388923839"
+PHONE = "6388923839"
+
+COLLEGE = (
+    "Maharana Institute of Professional Studies, Kanpur"
+)
+
+DEGREE = (
+    "B.Tech Computer Science & Engineering"
+)
+
+SPECIALIZATION = (
+    "Artificial Intelligence & Machine Learning"
+)
+
+CURRENT_YEAR = "Final Year"
+
+
+# ============================================================
+# GITHUB
+# ============================================================
 
 GITHUB_USERNAME = "gccawadhesh"
 
-GITHUB_URL = "https://github.com/gccawadhesh"
+GITHUB_URL = (
+    "https://github.com/gccawadhesh"
+)
 
-LINKEDIN_URL = "https://www.linkedin.com/in/awadhesh-kumar-366963291"
+
+# ============================================================
+# LINKEDIN
+# ============================================================
+
+LINKEDIN_URL = (
+    "https://www.linkedin.com/"
+    "in/awadhesh-kumar-366963291"
+)
+
+
+# ============================================================
+# LEETCODE
+# ============================================================
+
+LEETCODE_USERNAME = os.getenv(
+    "LEETCODE_USERNAME",
+    ""
+)
+
+
 # ============================================================
 # RESUME FILES
 # ============================================================
 
-RESUME_FILE = ROOT_DIR / "resume.md"
+# Markdown source resume
+RESUME_FILE = (
+    ROOT_DIR / "resume.md"
+)
 
-RESUME_PDF = ROOT_DIR / "Awadhesh_Kumar_Resume.pdf"
-# ======================================================
-# Portfolio Information
-# ======================================================
-
-PORTFOLIO_TITLE = "Awadhesh Kumar | AI & ML Engineer"
-
-PORTFOLIO_DESCRIPTION = (
-    "Final Year B.Tech CSE (AI & ML) student passionate about "
-    "Artificial Intelligence, Machine Learning, Full-Stack Development, "
-    "Backend Engineering, Automation, and Problem Solving."
+# Final generated resume
+RESUME_PDF = (
+    ROOT_DIR / "Awadhesh_Kumar_Resume.pdf"
 )
