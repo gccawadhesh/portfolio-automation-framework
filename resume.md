@@ -44,17 +44,17 @@ Aspiring Software Development Engineer with strong foundations in Data Structure
 
 ### FEATURED PROJECTS
 <!-- START_GITHUB_PROJECTS -->
-**Inboxguardian**  
-*[Source Code (Python)](https://github.com/Zukliod/inboxguardian)*
-* ull-stack email intelligence & inbox triage application with automated prioritization algorithms, email analytics, and an interactive React dashboard
-
-**Motionsensor Game**  
-*[Source Code (Python)](https://github.com/Zukliod/motionsensor_game)*
-* Computer vision gesture controller for Hill Climb Racing 2 using real-time motion tracking and hill climbing optimization algorithms.
-
-**Kodekaleesh 2025**  
-*[Source Code (Python)](https://github.com/Zukliod/kodekaleesh-2025)*
+**Resumeforge Ai**  
+*[Source Code (TypeScript)](https://github.com/gccawadhesh/ResumeForge-AI)*
 * Full-stack software engineering application.
+
+**Fdias Project**  
+*[Source Code (Python)](https://github.com/gccawadhesh/FDIAS-Project)*
+* A real-time face detection intrusion alert system using YOLOv8 and DeepFace, with alerts sent via Telegram
+
+**Sanskriti Setu Backend**  
+*[Source Code (Python)](https://github.com/gccawadhesh/sanskriti-setu-backend)*
+* Django backend for Sanskriti Setu cultural heritage app
 
 <!-- END_GITHUB_PROJECTS -->
 
