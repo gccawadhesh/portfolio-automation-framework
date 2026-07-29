@@ -9805,78 +9805,101 @@ FETCH LEETCODE STATISTICS
 
 async function loadLeetCodeStats() {
 
-  const username =
-      PORTFOLIO_CONFIG.leetcode.username.trim();
+    const username =
+        PORTFOLIO_CONFIG
+            .leetcode
+            .username
+            ?.trim();
 
-  if (!username) {
-      setLeetCodeUnavailable(
-          "LeetCode username is not configured."
-      );
-      return;
-  }
+    if (leetcodeUsernameElement) {
 
-  if (leetcodeUsernameElement) {
-      leetcodeUsernameElement.textContent =
-          `@${username}`;
-  }
+        leetcodeUsernameElement.textContent =
+            username
+                ? `@${username}`
+                : "@awadhesh_2906";
 
-  try {
+    }
 
-      const apiUrl =
-          `https://leetcode-api-faisalshohag.vercel.app/${encodeURIComponent(username)}`;
+    try {
 
-      const response = await fetch(
-          apiUrl,
-          {
-              cache: "no-store"
-          }
-      );
+        /*
+         * Stats are generated automatically by
+         * GitHub Actions through github_utils.py.
+         *
+         * Adding a timestamp prevents the browser
+         * from displaying stale cached statistics.
+         */
 
-      if (!response.ok) {
-          throw new Error(
-              `LeetCode API returned HTTP ${response.status}`
-          );
-      }
+        const response = await fetch(
+            `./data/leetcode.json?t=${Date.now()}`,
+            {
+                cache: "no-store"
+            }
+        );
 
-      const data =
-          await response.json();
+        if (!response.ok) {
 
-      console.log(
-          "LeetCode API response:",
-          data
-      );
+            throw new Error(
+                `Unable to load LeetCode data: HTTP ${response.status}`
+            );
 
-      if (
-          data.totalSolved === undefined ||
-          data.easySolved === undefined ||
-          data.mediumSolved === undefined ||
-          data.hardSolved === undefined
-      ) {
-          throw new Error(
-              "Invalid LeetCode API response."
-          );
-      }
+        }
 
-      updateLeetCodeDashboard({
-          totalSolved: Number(data.totalSolved || 0),
-          easySolved: Number(data.easySolved || 0),
-          mediumSolved: Number(data.mediumSolved || 0),
-          hardSolved: Number(data.hardSolved || 0),
-          ranking: data.ranking || "N/A"
-      });
+        const data =
+            await response.json();
 
-  } catch (error) {
 
-      console.error(
-          "LeetCode stats error:",
-          error
-      );
+        if (
+            data.totalSolved === undefined ||
+            data.easySolved === undefined ||
+            data.mediumSolved === undefined ||
+            data.hardSolved === undefined
+        ) {
 
-      setLeetCodeUnavailable(
-          "Unable to load live LeetCode statistics."
-      );
-  }
-}const username =
+            throw new Error(
+                "Invalid LeetCode JSON data."
+            );
+
+        }
+
+
+        if (
+            leetcodeUsernameElement &&
+            data.username
+        ) {
+
+            leetcodeUsernameElement.textContent =
+                `@${data.username}`;
+
+        }
+
+
+        updateLeetCodeDashboard(
+            data
+        );
+
+
+        console.log(
+            "LeetCode statistics loaded:",
+            data
+        );
+
+    } catch (error) {
+
+        console.error(
+            "LeetCode statistics loading failed:",
+            error
+        );
+
+
+        setLeetCodeUnavailable(
+            "LeetCode statistics are currently unavailable."
+        );
+
+    }
+
+}
+const username =
  PORTFOLIO_CONFIG
    .leetcode
    .username
