@@ -72,26 +72,17 @@ Developed multiple full-stack and AI-based applications demonstrating practical 
 ## FEATURED PROJECTS
 
 <!-- START_GITHUB_PROJECTS -->
+**Resumeforge Ai**  
+*[Source Code (TypeScript)](https://github.com/gccawadhesh/ResumeForge-AI)*
+* Full-stack software engineering application.
 
-### ResumeForge AI
-**Source Code:** https://github.com/gccawadhesh/ResumeForge-AI
+**Fdias Project**  
+*[Source Code (Python)](https://github.com/gccawadhesh/FDIAS-Project)*
+* A real-time face detection intrusion alert system using YOLOv8 and DeepFace, with alerts sent via Telegram
 
-- AI-powered resume builder and optimization platform.
-- Generates ATS-friendly resumes.
-- Supports resume parsing, editing, and PDF generation.
-
-### FDIAS Project
-**Source Code:** https://github.com/gccawadhesh/FDIAS-Project
-
-- Face Detection Intrusion Alert System.
-- Built using YOLOv8 and DeepFace.
-- Sends real-time Telegram alerts for unauthorized access.
-
-### Sanskriti Setu Backend
-**Source Code:** https://github.com/gccawadhesh/sanskriti-setu-backend
-
-- Django REST backend for the Sanskriti Setu application.
-- Designed scalable APIs and backend architecture.
+**Sanskriti Setu Backend**  
+*[Source Code (Python)](https://github.com/gccawadhesh/sanskriti-setu-backend)*
+* Django backend for Sanskriti Setu cultural heritage app
 
 <!-- END_GITHUB_PROJECTS -->
 
