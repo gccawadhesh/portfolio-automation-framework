@@ -3,12 +3,22 @@ import re
 import time
 import requests
 from datetime import datetime, timezone
+from pathlib import Path
 
 GITHUB_USERNAME = "gccawadhesh"
 
 # Automatically resolve path to resume.md relative to this script
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-RESUME_PATH = os.path.join(SCRIPT_DIR, "resume.md")
+
+
+# Repository root
+ROOT_DIR = Path(__file__).resolve().parent.parent
+
+RESUME_FILE = ROOT_DIR / "resume.md"
+
+if not RESUME_FILE.exists():
+    raise FileNotFoundError(
+        f"resume.md not found at {RESUME_FILE}"
+    )
 
 # Strict guardrail blacklist (practice, automation, or meta repos)
 EXCLUDED_PATTERNS = [
@@ -149,14 +159,14 @@ def generate_markdown(projects):
     return "\n".join(markdown_lines)
 
 def update_resume_file():
-    if not os.path.exists(RESUME_PATH):
-        print(f"Error: {RESUME_PATH} not found at {RESUME_PATH}")
+    if not os.path.exists(RESUME_FILE):
+        print(f"Error: {RESUME_FILE} not found at {RESUME_FILE}")
         return
 
     top_projects = fetch_top_repos()
     projects_md = generate_markdown(top_projects)
 
-    with open(RESUME_PATH, "r", encoding="utf-8") as f:
+    with open(RESUME_FILE, "r", encoding="utf-8") as f:
         content = f.read()
 
     pattern = r"(<!-- START_GITHUB_PROJECTS -->)(.*?)(<!-- END_GITHUB_PROJECTS -->)"
@@ -164,10 +174,10 @@ def update_resume_file():
 
     updated_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
 
-    with open(RESUME_PATH, "w", encoding="utf-8") as f:
+    with open(RESUME_FILE, "w", encoding="utf-8") as f:
         f.write(updated_content)
 
-    print(f"Success: {RESUME_PATH} updated successfully using Optimum 3-Tier Curator!")
+    print(f"Success: {RESUME_FILE} updated successfully using Optimum 3-Tier Curator!")
 
 if __name__ == "__main__":
     update_resume_file()
