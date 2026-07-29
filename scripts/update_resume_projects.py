@@ -3,12 +3,22 @@ import re
 import time
 import requests
 from datetime import datetime, timezone
+from pathlib import Path
 
 GITHUB_USERNAME = "gccawadhesh"
 
 # Automatically resolve path to resume.md relative to this script
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-RESUME_PATH = os.path.join(SCRIPT_DIR, "resume.md")
+
+
+# Repository root
+ROOT_DIR = Path(__file__).resolve().parent.parent
+
+RESUME_FILE = ROOT_DIR / "resume.md"
+
+if not RESUME_FILE.exists():
+    raise FileNotFoundError(
+        f"resume.md not found at {RESUME_FILE}"
+    )
 
 # Strict guardrail blacklist (practice, automation, or meta repos)
 EXCLUDED_PATTERNS = [
