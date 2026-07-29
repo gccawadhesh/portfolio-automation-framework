@@ -34,17 +34,13 @@ GITHUB_USERNAME = "gccawadhesh"
 GITHUB_URL = "https://github.com/gccawadhesh"
 
 LINKEDIN_URL = "https://www.linkedin.com/in/awadhesh-kumar-366963291"
+# ============================================================
+# RESUME FILES
+# ============================================================
 
-# ======================================================
-# Resume Files
-# ======================================================
+RESUME_FILE = ROOT_DIR / "resume.md"
 
-RESUME_FILE = "resume.md"
-
-PRIMARY_RESUME = "Awadhesh_Kumar_Resume.pdf"
-
-ATS_RESUME = "Awadhesh_Kumar_ATS_Resume.pdf"
-
+RESUME_PDF = ROOT_DIR / "Awadhesh_Kumar_Resume.pdf"
 # ======================================================
 # Portfolio Information
 # ======================================================
