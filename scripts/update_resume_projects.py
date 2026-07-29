@@ -4,7 +4,7 @@ import time
 import requests
 from datetime import datetime, timezone
 
-GITHUB_USERNAME = "zukliod"
+GITHUB_USERNAME = "gccawadhesh"
 
 # Automatically resolve path to resume.md relative to this script
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))

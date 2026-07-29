@@ -1,8 +1,8 @@
 import os
 
-# ==============================
-# Environment Variables
-# ==============================
+# ======================================================
+# API Keys & Environment Variables
+# ======================================================
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
@@ -12,15 +12,47 @@ LINKEDIN_AUTHOR_URN = os.getenv("LINKEDIN_AUTHOR_URN")
 
 LEETCODE_USERNAME = os.getenv(
     "LEETCODE_USERNAME",
-    "zukliod"
+    "your_leetcode_username"   # Replace with your LeetCode username
 )
 
-# ==============================
-# Files
-# ==============================
+# ======================================================
+# Personal Information
+# ======================================================
+
+NAME = "Awadhesh Kumar"
+
+ROLE = "Final Year B.Tech CSE (AI & ML) Student"
+
+COLLEGE = "Maharana Institute of Professional Studies, Kanpur"
+
+EMAIL = "awadheshkumar210424@gmail.com"
+
+PHONE = "+91 6388923839"
+
+GITHUB_USERNAME = "gccawadhesh"
+
+GITHUB_URL = "https://github.com/gccawadhesh"
+
+LINKEDIN_URL = "https://www.linkedin.com/in/awadhesh-kumar-366963291"
+
+# ======================================================
+# Resume Files
+# ======================================================
 
 RESUME_FILE = "resume.md"
 
-FULLSTACK_RESUME = "Harshit_FullStack_Resume.pdf"
+PRIMARY_RESUME = "Awadhesh_Kumar_Resume.pdf"
 
-BACKEND_RESUME = "Harshit_Backend_Resume.pdf"
+ATS_RESUME = "Awadhesh_Kumar_ATS_Resume.pdf"
+
+# ======================================================
+# Portfolio Information
+# ======================================================
+
+PORTFOLIO_TITLE = "Awadhesh Kumar | AI & ML Engineer"
+
+PORTFOLIO_DESCRIPTION = (
+    "Final Year B.Tech CSE (AI & ML) student passionate about "
+    "Artificial Intelligence, Machine Learning, Full-Stack Development, "
+    "Backend Engineering, Automation, and Problem Solving."
+)
