@@ -68,32 +68,26 @@ GITHUB_URL = (
 # LINKEDIN
 # ============================================================
 
-LINKEDIN_URL = (
-    "https://www.linkedin.com/"
-    "in/awadhesh-kumar-366963291"
-)
+LINKEDIN_URL = "https://www.linkedin.com/in/awadhesh-kumar-366963291"
 
+# ======================================================
+# Resume Files
+# ======================================================
 
-# ============================================================
-# LEETCODE
-# ============================================================
+RESUME_FILE = "resume.md"
 
-LEETCODE_USERNAME = os.getenv(
-    "LEETCODE_USERNAME",
-    ""
-)
+PRIMARY_RESUME = "Awadhesh_Kumar_Resume.pdf"
 
+ATS_RESUME = "Awadhesh_Kumar_ATS_Resume.pdf"
 
-# ============================================================
-# RESUME FILES
-# ============================================================
+# ======================================================
+# Portfolio Information
+# ======================================================
 
-# Markdown source resume
-RESUME_FILE = (
-    ROOT_DIR / "resume.md"
-)
+PORTFOLIO_TITLE = "Awadhesh Kumar | AI & ML Engineer"
 
-# Final generated resume
-RESUME_PDF = (
-    ROOT_DIR / "Awadhesh_Kumar_Resume.pdf"
+PORTFOLIO_DESCRIPTION = (
+    "Final Year B.Tech CSE (AI & ML) student passionate about "
+    "Artificial Intelligence, Machine Learning, Full-Stack Development, "
+    "Backend Engineering, Automation, and Problem Solving."
 )
