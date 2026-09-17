@@ -6,6 +6,11 @@ from linkedin_utils import publish_post
 
 from config import RESUME_PDF
 from utils import log
+import os
+import json
+from utils import log
+
+# In your main execution flow:
 
 
 def main():
@@ -13,14 +18,11 @@ def main():
     log("Starting Daily Automation Pipeline...")
 
     stats = fetch_leetcode_stats()
-
-    if not stats:
-        return
-
-    updated_md = update_resume_markdown(
-        stats["totalSolved"]
-    )
-
+    if stats:
+        os.makedirs("data", exist_ok=True)
+        with open("data/leetcode.json", "w", encoding="utf-8") as f:
+            json.dump(stats, f, indent=2)
+        log("Saved LeetCode stats to data/leetcode.json")
     if updated_md:
 
         compile_pdf_variant(
