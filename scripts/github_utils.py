@@ -1,18 +1,18 @@
 import json
 import urllib.request
 import urllib.error
-from config import LEETCODE_USERNAME
+import os
 from utils import log, error
 
+LEETCODE_USERNAME = os.getenv("LEETCODE_USERNAME", "awadhesh_2906")
 
 def fetch_leetcode_stats(username=LEETCODE_USERNAME):
-    log("Fetching LeetCode Stats...")
+    log(f"Fetching LeetCode Stats for {username}...")
     if not username:
-        error("LEETCODE_USERNAME is not configured.")
+        error("LEETCODE_USERNAME is not set.")
         return None
 
-    # 1. Primary: Official LeetCode GraphQL API
-    graphql_url = "https://leetcode.com/graphql"
+    url = "https://leetcode.com/graphql"
     query = """
     query userProblemsSolved($username: String!) {
         allQuestionsCount {
@@ -38,7 +38,7 @@ def fetch_leetcode_stats(username=LEETCODE_USERNAME):
     }).encode("utf-8")
 
     req = urllib.request.Request(
-        graphql_url,
+        url,
         data=payload,
         headers={
             "Content-Type": "application/json",
@@ -47,12 +47,12 @@ def fetch_leetcode_stats(username=LEETCODE_USERNAME):
     )
 
     try:
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            matched = data.get("data", {}).get("matchedUser")
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            raw = json.loads(resp.read().decode("utf-8"))
+            matched = raw.get("data", {}).get("matchedUser")
             if matched:
-                ac_submissions = matched.get("submitStatsGlobal", {}).get("acSubmissionNum", [])
-                stats_map = {item["difficulty"]: item["count"] for item in ac_submissions}
+                submissions = matched.get("submitStatsGlobal", {}).get("acSubmissionNum", [])
+                stats_map = {item["difficulty"]: item["count"] for item in submissions}
                 ranking = matched.get("profile", {}).get("ranking", "N/A")
 
                 stats = {
@@ -62,30 +62,11 @@ def fetch_leetcode_stats(username=LEETCODE_USERNAME):
                     "hardSolved": stats_map.get("Hard", 0),
                     "ranking": ranking
                 }
-                log(f"LeetCode stats fetched successfully: {stats}")
+                log(f"LeetCode stats fetched: {stats}")
                 return stats
+            else:
+                error(f"User {username} not found on LeetCode.")
+                return None
     except Exception as e:
-        log(f"GraphQL request failed ({e}), trying fallback proxy...")
-
-    # 2. Fallback: Alfa LeetCode API
-    try:
-        fallback_url = f"https://alfa-leetcode-api.onrender.com/userProfile/{username}"
-        req_fallback = urllib.request.Request(
-            fallback_url,
-            headers={"User-Agent": "Mozilla/5.0"}
-        )
-        with urllib.request.urlopen(req_fallback, timeout=10) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            if "totalSolved" in data:
-                stats = {
-                    "totalSolved": data.get("totalSolved", 0),
-                    "easySolved": data.get("easySolved", 0),
-                    "mediumSolved": data.get("mediumSolved", 0),
-                    "hardSolved": data.get("hardSolved", 0),
-                    "ranking": data.get("ranking", "N/A")
-                }
-                return stats
-    except Exception as e:
-        error(f"Unable to fetch LeetCode Stats from all sources: {e}")
-
-    return None
+        error(f"Failed to query LeetCode GraphQL: {e}")
+        return None
