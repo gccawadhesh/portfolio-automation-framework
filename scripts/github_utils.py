@@ -1,6 +1,7 @@
-import os
 import json
-from github_utils import fetch_leetcode_stats
+import urllib.request
+import urllib.error
+from config import LEETCODE_USERNAME
 from utils import log, error
 
 def main():
