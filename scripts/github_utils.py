@@ -1,8 +1,7 @@
 from config import LEETCODE_USERNAME
 
 from utils import get_json
-
-from utils import logimport json
+import json
 import urllib.request
 import urllib.error
 from config import LEETCODE_USERNAME
