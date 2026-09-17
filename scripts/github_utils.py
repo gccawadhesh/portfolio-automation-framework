@@ -1,11 +1,9 @@
-from config import LEETCODE_USERNAME
-
-from utils import get_json
 import json
 import urllib.request
 import urllib.error
 from config import LEETCODE_USERNAME
 from utils import log, error
+
 
 def fetch_leetcode_stats(username=LEETCODE_USERNAME):
     log("Fetching LeetCode Stats...")
@@ -13,7 +11,7 @@ def fetch_leetcode_stats(username=LEETCODE_USERNAME):
         error("LEETCODE_USERNAME is not configured.")
         return None
 
-    # 1. Primary: Official LeetCode GraphQL API (No third-party proxy needed)
+    # 1. Primary: Official LeetCode GraphQL API
     graphql_url = "https://leetcode.com/graphql"
     query = """
     query userProblemsSolved($username: String!) {
@@ -64,12 +62,12 @@ def fetch_leetcode_stats(username=LEETCODE_USERNAME):
                     "hardSolved": stats_map.get("Hard", 0),
                     "ranking": ranking
                 }
-                log(f"LeetCode stats fetched successfully via GraphQL: {stats}")
+                log(f"LeetCode stats fetched successfully: {stats}")
                 return stats
     except Exception as e:
         log(f"GraphQL request failed ({e}), trying fallback proxy...")
 
-    # 2. Fallback: Alfa LeetCode proxy
+    # 2. Fallback: Alfa LeetCode API
     try:
         fallback_url = f"https://alfa-leetcode-api.onrender.com/userProfile/{username}"
         req_fallback = urllib.request.Request(
@@ -91,41 +89,3 @@ def fetch_leetcode_stats(username=LEETCODE_USERNAME):
         error(f"Unable to fetch LeetCode Stats from all sources: {e}")
 
     return None
-
-from utils import error
-
-
-def fetch_leetcode_stats(username=LEETCODE_USERNAME):
-
-    log("Fetching LeetCode Stats...")
-
-    url = (
-        f"https://leetcode-api-faisalshohag.vercel.app/"
-        f"{username}"
-    )
-
-    try:
-
-        data = get_json(url)
-
-        stats = {
-
-            "totalSolved": data.get("totalSolved", 0),
-
-            "easySolved": data.get("easySolved", 0),
-
-            "mediumSolved": data.get("mediumSolved", 0),
-
-            "hardSolved": data.get("hardSolved", 0),
-
-            "ranking": data.get("ranking", "N/A")
-
-        }
-
-        return stats
-
-    except Exception as e:
-
-        error(f"Unable to fetch LeetCode Stats: {e}")
-
-        return None
