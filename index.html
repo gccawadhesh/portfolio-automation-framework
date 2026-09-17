@@ -9802,33 +9802,27 @@ console.info(
 /* =========================================================
 FETCH LEETCODE STATISTICS
 ========================================================= */
+/* =========================================================
+FETCH LEETCODE STATISTICS
+========================================================= */
 
 async function loadLeetCodeStats() {
   const username = PORTFOLIO_CONFIG.leetcode.username?.trim();
 
-  if (!username) {
-    setLeetCodeUnavailable("LeetCode username is not configured.");
-    return;
-  }
-
-  if (leetcodeUsernameElement) {
+  if (leetcodeUsernameElement && username) {
     leetcodeUsernameElement.textContent = `@${username}`;
   }
 
-  // CodeTabs free open proxy + Heroku LeetCode stats API
-  const targetApi = `https://leetcode-stats-api.herokuapp.com/${encodeURIComponent(username)}`;
-  const proxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetApi)}`;
-
   try {
-    const response = await fetch(proxyUrl);
+    // Fetches the JSON file committed by your GitHub Action (same domain, NO CORS)
+    const response = await fetch("./data/leetcode.json", { cache: "no-cache" });
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
 
     const data = await response.json();
-    console.log("LeetCode Live Data:", data);
 
-    if (data.status === "success" && data.totalSolved !== undefined) {
+    if (data.totalSolved !== undefined) {
       updateLeetCodeDashboard({
         totalSolved: Number(data.totalSolved || 0),
         easySolved: Number(data.easySolved || 0),
@@ -9838,32 +9832,10 @@ async function loadLeetCodeStats() {
       });
       return;
     }
-  } catch (err) {
-    console.warn("CodeTabs proxy fetch failed:", err);
+  } catch (error) {
+    console.warn("Could not load /data/leetcode.json:", error);
+    setLeetCodeUnavailable("LeetCode stats updating soon.");
   }
-
-  // Backup open proxy (AllOrigins)
-  try {
-    const allOriginsUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(targetApi)}`;
-    const response = await fetch(allOriginsUrl);
-    if (response.ok) {
-      const data = await response.json();
-      if (data.status === "success" && data.totalSolved !== undefined) {
-        updateLeetCodeDashboard({
-          totalSolved: Number(data.totalSolved || 0),
-          easySolved: Number(data.easySolved || 0),
-          mediumSolved: Number(data.mediumSolved || 0),
-          hardSolved: Number(data.hardSolved || 0),
-          ranking: data.ranking || "N/A"
-        });
-        return;
-      }
-    }
-  } catch (err) {
-    console.error("AllOrigins fallback failed:", err);
-  }
-
-  setLeetCodeUnavailable("Unable to load LeetCode statistics.");
 }
 
 loadLeetCodeStats();
