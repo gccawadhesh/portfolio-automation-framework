@@ -52,17 +52,23 @@ def fetch_leetcode_stats(username=LEETCODE_USERNAME):
             matched = raw.get("data", {}).get("matchedUser")
             if matched:
                 submissions = matched.get("submitStatsGlobal", {}).get("acSubmissionNum", [])
-                stats_map = {item["difficulty"]: item["count"] for item in submissions}
+                
+                # Normalize keys to lowercase so case mismatches never return 0
+                stats_map = {
+                    item["difficulty"].lower(): item["count"]
+                    for item in submissions
+                }
+                
                 ranking = matched.get("profile", {}).get("ranking", "N/A")
 
                 stats = {
-                    "totalSolved": stats_map.get("All", 0),
-                    "easySolved": stats_map.get("Easy", 0),
-                    "mediumSolved": stats_map.get("Medium", 0),
-                    "hardSolved": stats_map.get("Hard", 0),
+                    "totalSolved": stats_map.get("all", 0),
+                    "easySolved": stats_map.get("easy", 0),
+                    "mediumSolved": stats_map.get("medium", 0),
+                    "hardSolved": stats_map.get("hard", 0),
                     "ranking": ranking
                 }
-                log(f"LeetCode stats fetched: {stats}")
+                log(f"LeetCode stats fetched successfully: {stats}")
                 return stats
             else:
                 error(f"User {username} not found on LeetCode.")
