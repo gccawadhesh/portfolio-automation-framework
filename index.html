@@ -9815,21 +9815,14 @@ async function loadLeetCodeStats() {
     leetcodeUsernameElement.textContent = `@${username}`;
   }
 
-  // List of public CORS-enabled mirrors
-  const endpoints = [
-    `https://leetcode-stats-api.herokuapp.com/${encodeURIComponent(username)}`,
-    `https://alfa-leetcode-api.onrender.com/userProfile/${encodeURIComponent(username)}`,
-    `https://leetcode-api-faisalshohag.vercel.app/${encodeURIComponent(username)}`
-  ];
+  // 1. Direct fetch via CORS proxy (bypasses browser origin blocks)
+  const targetUrl = `https://leetcode-stats-api.herokuapp.com/${encodeURIComponent(username)}`;
+  const corsProxiedUrl = `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`;
 
-  for (const url of endpoints) {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) continue;
-
+  try {
+    const response = await fetch(corsProxiedUrl);
+    if (response.ok) {
       const data = await response.json();
-
-      // Handle leetcode-stats-api format
       if (data.status === "success" && data.totalSolved !== undefined) {
         updateLeetCodeDashboard({
           totalSolved: Number(data.totalSolved || 0),
@@ -9840,9 +9833,18 @@ async function loadLeetCodeStats() {
         });
         return;
       }
+    }
+  } catch (err) {
+    console.warn("CORS proxied fetch failed:", err);
+  }
 
-      // Handle standard/faisalshohag format
-      if (data.totalSolved !== undefined) {
+  // 2. Fallback: Raw GitHub data file (guaranteed CORS allow-origin: *)
+  try {
+    const ghRawUrl = `https://raw.githubusercontent.com/gccawadhesh/portfolio-automation-framework/main/data/leetcode.json?t=${Date.now()}`;
+    const res = await fetch(ghRawUrl);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.totalSolved !== undefined) {
         updateLeetCodeDashboard({
           totalSolved: Number(data.totalSolved || 0),
           easySolved: Number(data.easySolved || 0),
@@ -9852,9 +9854,9 @@ async function loadLeetCodeStats() {
         });
         return;
       }
-    } catch (err) {
-      console.warn(`Proxy ${url} failed:`, err);
     }
+  } catch (e) {
+    console.warn("GitHub Raw fallback failed:", e);
   }
 
   setLeetCodeUnavailable("Unable to load LeetCode statistics.");
