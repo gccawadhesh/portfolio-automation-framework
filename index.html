@@ -9815,12 +9815,37 @@ async function loadLeetCodeStats() {
     leetcodeUsernameElement.textContent = `@${username}`;
   }
 
-  // 1. Direct fetch via CORS proxy (bypasses browser origin blocks)
-  const targetUrl = `https://leetcode-stats-api.herokuapp.com/${encodeURIComponent(username)}`;
-  const corsProxiedUrl = `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`;
+  // CodeTabs free open proxy + Heroku LeetCode stats API
+  const targetApi = `https://leetcode-stats-api.herokuapp.com/${encodeURIComponent(username)}`;
+  const proxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetApi)}`;
 
   try {
-    const response = await fetch(corsProxiedUrl);
+    const response = await fetch(proxyUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("LeetCode Live Data:", data);
+
+    if (data.status === "success" && data.totalSolved !== undefined) {
+      updateLeetCodeDashboard({
+        totalSolved: Number(data.totalSolved || 0),
+        easySolved: Number(data.easySolved || 0),
+        mediumSolved: Number(data.mediumSolved || 0),
+        hardSolved: Number(data.hardSolved || 0),
+        ranking: data.ranking || "N/A"
+      });
+      return;
+    }
+  } catch (err) {
+    console.warn("CodeTabs proxy fetch failed:", err);
+  }
+
+  // Backup open proxy (AllOrigins)
+  try {
+    const allOriginsUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(targetApi)}`;
+    const response = await fetch(allOriginsUrl);
     if (response.ok) {
       const data = await response.json();
       if (data.status === "success" && data.totalSolved !== undefined) {
@@ -9835,28 +9860,7 @@ async function loadLeetCodeStats() {
       }
     }
   } catch (err) {
-    console.warn("CORS proxied fetch failed:", err);
-  }
-
-  // 2. Fallback: Raw GitHub data file (guaranteed CORS allow-origin: *)
-  try {
-    const ghRawUrl = `https://raw.githubusercontent.com/gccawadhesh/portfolio-automation-framework/main/data/leetcode.json?t=${Date.now()}`;
-    const res = await fetch(ghRawUrl);
-    if (res.ok) {
-      const data = await res.json();
-      if (data && data.totalSolved !== undefined) {
-        updateLeetCodeDashboard({
-          totalSolved: Number(data.totalSolved || 0),
-          easySolved: Number(data.easySolved || 0),
-          mediumSolved: Number(data.mediumSolved || 0),
-          hardSolved: Number(data.hardSolved || 0),
-          ranking: data.ranking || "N/A"
-        });
-        return;
-      }
-    }
-  } catch (e) {
-    console.warn("GitHub Raw fallback failed:", e);
+    console.error("AllOrigins fallback failed:", err);
   }
 
   setLeetCodeUnavailable("Unable to load LeetCode statistics.");
